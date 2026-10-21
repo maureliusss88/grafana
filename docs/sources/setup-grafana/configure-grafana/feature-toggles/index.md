@@ -84,6 +84,7 @@ Most [generally available](https://grafana.com/docs/release-life-cycle/#general-
 | `faroDatasourceSelector`           | Enable the data source selector within the Frontend Apps section of the Frontend Observability                                 |
 | `provisioning.userAttribution`     | Author Git Sync commits as the acting Grafana user                                                                             |
 | `externalServiceAccounts`          | Automatic service account and token setup for plugins                                                                          |
+| `grafana.mobileEditDeprecation`    | Disables dashboard edit mode (manual and assistant-driven) on mobile/small-screen viewports                                    |
 | `dashboard.notebooks`              | Enable notebooks, a resource in the dashboard API group for mixing text cells, code cells, and visualization panels            |
 | `feedbackButton`                   | Enables the feedback button in the dashboard edit sidebar                                                                      |
 | `pdfTables`                        | Enables generating table data as PDF in reporting                                                                              |
