@@ -32,6 +32,7 @@ import { KioskMode } from 'app/types/dashboard';
 import { PanelEditControls } from '../panel-edit/PanelEditControls';
 import { type PanelEditor } from '../panel-edit/PanelEditor';
 import { usePanelEditDirty } from '../panel-edit/usePanelEditDirty';
+import { useIsMobileEditDeprecated } from '../utils/mobileEditDeprecation';
 import { findVizPanelByPathId } from '../utils/pathId';
 import { getDashboardSceneFor, isLibraryPanel } from '../utils/utils';
 import { filterSectionRepeatLocalVariables } from '../variables/utils';
@@ -305,6 +306,7 @@ function DashboardControlActions({
   const { isPlaying } = playlistSrv.useState();
   const { chrome } = useGrafana();
   const { kioskMode } = chrome.useState();
+  const isMobileEditDeprecated = useIsMobileEditDeprecated();
 
   if (kioskMode === KioskMode.Full) {
     return null;
@@ -328,8 +330,9 @@ function DashboardControlActions({
     (canSave || canSaveAs) &&
     !isEditingLibraryPanel &&
     (!modesEnabled || getDashboardMode(dashboard.state) !== 'view' || hasChanges || !hasUid);
-  const showEditButton = (hasUid || isEditing) && !isPlaying && canEditDashboard && isEditable && !editPanel;
-  const showMakeEditableButton = !isPlaying && canEditDashboard && !isEditable && !isEditing;
+  const showEditButton =
+    (hasUid || isEditing) && !isPlaying && canEditDashboard && isEditable && !editPanel && !isMobileEditDeprecated;
+  const showMakeEditableButton = !isPlaying && canEditDashboard && !isEditable && !isEditing && !isMobileEditDeprecated;
   const showPanelEditButtons = Boolean(editPanel);
 
   return (
